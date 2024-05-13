@@ -36,7 +36,7 @@ BlackType:
 BlackLore:
   - '绑定物品'
 
-#指定type的方块才能绑定抽奖箱（不填为不启用）
+#指定type或者id的方块才能绑定抽奖箱（不填为不启用）
 BindWhiteType: [ ]
 
 #每次抽奖的税

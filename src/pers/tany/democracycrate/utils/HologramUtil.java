@@ -8,7 +8,6 @@ import pers.tany.yukinoaapi.interfacepart.other.IString;
 import pers.tany.yukinoaapi.interfacepart.serializer.ISerializer;
 
 public class HologramUtil {
-
     public static void addHologram(Location location) {
         String crateName = CrateUtil.getLocationCrate(location);
         if (crateName != null) {
@@ -19,9 +18,10 @@ public class HologramUtil {
 
             Hologram hologram = HologramsAPI.createHologram(Main.plugin, newLocation);
             for (String text : Main.message.getStringList("HolographicDisplays")) {
-                hologram.appendTextLine(IString.color(text.replace("[crateName]", crateName).replace("[owner]", CrateUtil.getOwner(crateName)).replace("[money]", CrateUtil.getMoney(crateName) + "").replace("[number]",CrateUtil.getGuaranteed(crateName)+"")));
+                hologram.appendTextLine(IString.color(text.replace("[crateName]", crateName).replace("[owner]", CrateUtil.getOwner(crateName)).replace("[money]", CrateUtil.getMoney(crateName) + "").replace("[number]", CrateUtil.getGuaranteed(crateName) + "")));
             }
             Main.holographicList.put(ISerializer.serializerLocation(location), hologram);
+
         }
     }
 
@@ -43,5 +43,4 @@ public class HologramUtil {
         }
         HologramUtil.initHologram();
     }
-
 }

@@ -16,7 +16,6 @@ import pers.tany.yukinoaapi.realizationpart.VaultUtil;
 
 import java.util.HashMap;
 
-
 public class Main extends JavaPlugin {
     public static Plugin plugin;
     public static YamlConfiguration config;
@@ -24,8 +23,7 @@ public class Main extends JavaPlugin {
     public static YamlConfiguration message;
     public static YamlConfiguration log;
     public static Economy economy;
-
-    public static HashMap<String, Hologram> holographicList = new HashMap<String, Hologram>();
+    public static HashMap<String, com.gmail.filoghost.holographicdisplays.api.Hologram> holographicList = new HashMap<>();
 
     @Override
     public void onDisable() {
@@ -60,21 +58,17 @@ public class Main extends JavaPlugin {
         HologramUtil.initHologram();
 
         new BukkitRunnable() {
-
             @Override
             public void run() {
                 IConfig.saveConfig(Main.plugin, Main.data, "", "data");
             }
-
         }.runTaskTimer(Main.plugin, 1200, 1200);
 
         new BukkitRunnable() {
-
             @Override
             public void run() {
                 HologramUtil.update();
             }
-
         }.runTaskTimer(Main.plugin, 2400, 6000);
     }
 }

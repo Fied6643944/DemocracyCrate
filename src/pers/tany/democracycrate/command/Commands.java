@@ -118,7 +118,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 ItemStack itemStack = player.getItemInHand();
-                if (Main.config.getStringList("BlackType").contains(itemStack.getType().toString())) {
+                if (Main.config.getStringList("BlackType").contains(itemStack.getType().toString()) || Main.config.getStringList("BlackType").contains(itemStack.getTypeId() + "")) {
                     player.sendMessage(IString.color(Main.message.getString("NoAdd")));
                     return true;
                 }
@@ -381,7 +381,7 @@ public class Commands implements CommandExecutor {
                     return true;
                 }
                 ItemStack itemStack = player.getItemInHand();
-                if (Main.config.getStringList("BlackType").contains(itemStack.getType().toString())) {
+                if (Main.config.getStringList("BlackType").contains(itemStack.getType().toString()) || Main.config.getStringList("BlackType").contains(itemStack.getTypeId() + "")) {
                     player.sendMessage(IString.color(Main.message.getString("NoAdd")));
                     return true;
                 }

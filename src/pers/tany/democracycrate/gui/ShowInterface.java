@@ -16,6 +16,7 @@ import pers.tany.yukinoaapi.interfacepart.builder.IItemBuilder;
 import pers.tany.yukinoaapi.interfacepart.item.IItem;
 import pers.tany.yukinoaapi.interfacepart.other.IRandom;
 import pers.tany.yukinoaapi.interfacepart.other.IString;
+import pers.tany.yukinoaapi.interfacepart.player.IPlayer;
 import pers.tany.yukinoaapi.interfacepart.serializer.ISerializer;
 import pers.tany.yukinoaapi.realizationpart.builder.ItemBuilder;
 import pers.tany.yukinoaapi.realizationpart.item.GlassPaneUtil;
@@ -91,9 +92,9 @@ public class ShowInterface implements InventoryHolder, Listener {
             ItemStack itemStack = ISerializer.deserializeItemStack(itemInfo.split(":")[0]);
             String probability = itemInfo.split(":")[1];
             IItemBuilder iItemBuilder = new ItemBuilder(itemStack);
-            iItemBuilder.addLore(Main.message.getString("ShowLore").replace("[probability]", probability + ""));
+            iItemBuilder.addLore(Main.message.getString("ShowLore").replace("[probability]", probability));
             if (player.getName().equals(ownerName)) {
-//                iItemBuilder.addLore(Main.message.getString("DeleteLore"));
+                iItemBuilder.addLore(Main.message.getString("DeleteLore"));
             }
 
             SLOT_ITEM.put(location, itemInfo);
@@ -120,15 +121,15 @@ public class ShowInterface implements InventoryHolder, Listener {
                     if (evt.getClickedInventory().getHolder() instanceof ShowInterface) {
                         if (!IItem.isEmpty(evt.getCurrentItem())) {
                             if (player.getName().equals(ownerName) && SLOT_ITEM.containsKey(rawSlot)) {
-//                                List<String> itemList = CrateUtil.getItemList(crateName);
-//                                String itemInfo = SLOT_ITEM.get(rawSlot);
-//
-//                                ItemStack itemStack = ISerializer.deserializeItemStack(itemInfo.split(":")[0]);
-//                                IPlayer.giveItem(player, itemStack);
-//
-//                                itemList.remove(itemInfo);
-//                                CrateUtil.setItemList(crateName, itemList);
-//                                player.sendMessage(IString.color(Main.message.getString("DeleteSuccess")));
+                                List<String> itemList = CrateUtil.getItemList(crateName);
+                                String itemInfo = SLOT_ITEM.get(rawSlot);
+
+                                ItemStack itemStack = ISerializer.deserializeItemStack(itemInfo.split(":")[0]);
+                                IPlayer.giveItem(player, itemStack);
+
+                                itemList.remove(itemInfo);
+                                CrateUtil.setItemList(crateName, itemList);
+                                player.sendMessage(IString.color(Main.message.getString("DeleteSuccess")));
 
                                 update(page);
                             } else if (rawSlot == 45 && hasLast) {

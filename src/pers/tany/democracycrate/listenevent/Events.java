@@ -73,7 +73,7 @@ public class Events implements Listener {
                         return;
                     }
                     if (Main.config.getStringList("BindWhiteType").size() > 0) {
-                        if (!Main.config.getStringList("BindWhiteType").contains(block.getType().toString())) {
+                        if (!Main.config.getStringList("BindWhiteType").contains(block.getType().toString()) && !Main.config.getStringList("BindWhiteType").contains(block.getTypeId() + "")) {
                             player.sendMessage(IString.color(Main.message.getString("NoBindType")));
                             return;
                         }
